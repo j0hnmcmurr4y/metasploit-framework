@@ -270,8 +270,6 @@ class Core
   # Display one of the fabulous banners.
   #
   def cmd_banner(*args)
-    banner  = "%cya" + Banner.to_s + "%clr\n\n"
-
     stats       = framework.stats
     version     = "%yelmetasploit v#{Metasploit::Framework::VERSION}%clr",
     exp_aux_pos = "#{stats.num_exploits} exploits - #{stats.num_auxiliary} auxiliary - #{stats.num_post} post",
@@ -279,14 +277,10 @@ class Core
     eva         = "#{stats.num_evasion} evasion",
     padding     = 48
 
-    banner << ("       =[ %-#{padding+8}s]\n" % version)
+    banner = ("       =[ %-#{padding+8}s]\n" % version)
     banner << ("+ -- --=[ %-#{padding}s]\n" % exp_aux_pos)
     banner << ("+ -- --=[ %-#{padding}s]\n" % pay_enc_nop)
     banner << ("+ -- --=[ %-#{padding}s]\n" % eva)
-
-    banner << "\n"
-    banner << Rex::Text.wordwrap('Metasploit Documentation: https://docs.metasploit.com/', indent = 0, cols = 60)
-
     # Display the banner
     print_line(banner)
 
